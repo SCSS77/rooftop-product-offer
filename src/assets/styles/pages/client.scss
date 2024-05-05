@@ -46,6 +46,22 @@
         font-size: 1.05rem;
         max-width: 920px;
       }
+
+      &-no-promotion {
+        background: $white;
+        border: .1rem solid $pink;
+        color: $black;
+
+        .client-card__button {
+          background-color: $pink;
+          color: $white;
+
+          &:hover {
+            background-color: darken($pink, 10%);
+            color: $white;
+          }
+        }
+      }
     }
 
     &--info {

@@ -4,14 +4,14 @@
   flex-direction: column;
   height: calc(100vh - 5rem);
   justify-content: center;
-  padding-top: 5rem;
+  padding: 5rem 1.25rem 0;
 
   &__container {
     max-width: 36rem;
   }
 
   &__title {
-    font-size: 2.8rem;
+    font-size: 1.8rem;
     padding-bottom: 1.15rem;
     line-height: 1.1;
     letter-spacing: -.5px;
@@ -85,5 +85,12 @@
     &:hover {
       background-color: darken($pink, 10%);
     }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+
+  .searcher__title {
+    font-size: 2.8rem;
   }
 }

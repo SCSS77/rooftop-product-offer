@@ -27,6 +27,7 @@
 
       &:last-child {
         text-align: right;
+        padding-left: .8rem;
       }
     }
   }
@@ -35,5 +36,12 @@
     flex: 1;
     max-width: 112px;
     text-align: center;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+
+  .header__nav a:last-child {
+    padding-left: 0;
   }
 }

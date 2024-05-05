@@ -8,7 +8,7 @@
         </div>
       </div>
 
-      <div class="client-card client-card--promo-information">
+      <div :class="[ 'client-card', 'client-card--promo-information', promoCardClass ]">
         <h3 class="client-card--promo-information__title">{{ promoTitle }}</h3>
         <p :class="offerClass">{{ offerMessage }}</p>
         <a class="client-card__button" href="#">Descubre más</a>
@@ -139,6 +139,9 @@ export default defineComponent({
     },
     promoTitle(): string {
       return this.offerType === 'No aplicable' ? '¡Lo sentimos!' : '¡Felicidades!';
+    },
+    promoCardClass(): string {
+      return this.offerType === 'No aplicable' ? 'client-card--promo-information-no-promotion' : '';
     }
   },
   watch: {
