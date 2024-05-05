@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input v-model="cupsInput" type="text" placeholder="Ej.000000">
+    <input v-model="cupsInput" type="number" placeholder="Ej.000000" @keydown.enter="searchClient">
     <button @click="searchClient">Buscar mi oferta</button>
   </div>
 </template>
@@ -22,7 +22,12 @@ export default defineComponent({
   },
   methods: {
     searchClient() {
-      this.clientFound = clientsData.find((client: Client) => client.cups === this.cupsInput) || null;
+      if (!this.cupsInput) {
+        toast.error('Por favor, ingrese un número de cups');
+        return;
+      }
+
+      this.clientFound = clientsData.find((client: Client) => client.cups === this.cupsInput.toString()) || null;
       if (this.clientFound) {
         this.$router.push({ name: 'ClientInfo', params: { cups: this.clientFound.cups } } as unknown as RouteLocationRaw);
       } else {
