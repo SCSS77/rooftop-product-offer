@@ -1,0 +1,99 @@
+.client {
+
+  &-section {
+    padding-top: 5rem;
+  }
+
+  &-card {
+    background-color: $white;
+    border-radius: .8rem;
+    box-shadow: 0 3px 17px 0 rgba(38,46,54,.1);
+    margin: 1.5rem;
+    padding: 1.5rem;
+
+    &__container {
+      align-items: center;
+      display: flex;
+    }
+
+    &__icon-user {
+      margin-right: 1rem;
+    }
+
+    &__title {
+      font-size: 1.05rem;
+
+      strong {
+        display: block;
+        font-size: 1.5rem;
+        padding-top: .2rem;
+      }
+    }
+
+    &--promo-information {
+      color: $white;
+      background: rgb(2,0,36);
+      background: linear-gradient(169deg, rgba(2,0,36,1) 0%, rgba(250,204,21,1) 0%, rgba(231,102,82,1) 75%, rgba(219,39,119,1) 100%);
+      font-weight: bold;
+
+      &__title {
+        font-size: 2.1rem;
+        font-weight: bold;
+        padding-bottom: 1.15rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+        max-width: 920px;
+      }
+    }
+
+    &--info {
+
+      .client-card__title {
+        font-size: 1.35rem;
+        font-weight: bold;
+        padding-bottom: 1.15rem;
+      }
+
+      p {
+        font-size: 1.05rem;
+        margin-bottom: .75rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        span {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    &__button {
+      background-color: $white;
+      border: .1rem solid transparent;
+      display: inline-flex;
+      color: $black;
+      height: 3rem;
+      margin: 1.15rem 0 0;
+      min-height: 3rem;
+      cursor: pointer;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10rem;
+      padding: .75rem 1rem;
+      text-align: center;
+      font-size: 1.15rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color .2s;
+
+      &:hover {
+        color: darken($pink, 10%);
+        background-color: $pink-light;
+      }
+    }
+  }
+}

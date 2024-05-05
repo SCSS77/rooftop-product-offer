@@ -3,7 +3,7 @@
     <nav class="header__nav">
       <router-link to="/">Inicio</router-link>
       <img class="header__logo" src="@/assets/logo-gradient.svg" alt="Logo" height="16" width="112">
-      <router-link to="/about">Sobre nosotros</router-link>
+      <a href="https://corporate.holaluz.com/sobre-nosotros/" target="_blank">Sobre nosotros</a>
     </nav>
   </header>
 </template>

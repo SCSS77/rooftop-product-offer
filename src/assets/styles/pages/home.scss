@@ -4,6 +4,7 @@
   flex-direction: column;
   height: calc(100vh - 5rem);
   justify-content: center;
+  padding-top: 5rem;
 
   &__container {
     max-width: 36rem;
@@ -20,7 +21,7 @@
 
   &__subtitle {
     font-size: 1.15rem;
-    line-height: 1.15;
+    line-height: 1.35;
     letter-spacing: -.5px;
     text-align: center;
 
@@ -28,6 +29,11 @@
       color: $black;
       font-weight: bold;
       text-decoration: none;
+      transition: color .3s;
+
+      &:hover {
+        color: $pink;
+      }
     }
   }
 
@@ -42,6 +48,7 @@
     line-height: 1.5rem;
     border-radius: .5rem;
     outline: none;
+    transition: border .2s linear;
     width: 100%;
 
     &:hover,
@@ -73,5 +80,10 @@
     line-height: 1em;
     font-weight: bold;
     width: 100%;
+    transition: background-color .2s;
+
+    &:hover {
+      background-color: darken($pink, 10%);
+    }
   }
 }

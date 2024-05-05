@@ -1,27 +1,44 @@
 <template>
-  <div>
-    <h2>Detalles del Cliente</h2>
+  <div class="client-section">
     <div v-if="client">
-      <p>Nombre: {{ client.full_name }}</p>
-      <p>Dirección: {{ client.address }}</p>
-      <p>CUPS: {{ client.cups }}</p>
-      <p>Consumidor: {{ client.role }}</p>
-      <p>Edificio: {{ client.building_type }}</p>
-
-      <h3>Detalles del Suministro</h3>
-      <div v-for="supply in clientSupplies" :key="supply.cups">
-        <p>CUPS: {{ supply.cups }}</p>
-        <p>Tarifa: {{ supply.tariff }}</p>
-        <p>Importe Facturado: {{ supply.invoiced_amount }}</p>
-        <p>Potencia P1: {{ supply.power.p1 }}</p>
-        <p>Potencia P2: {{ supply.power.p2 }}</p>
-        <p>Vecinos: {{ supply.neighbors.join(', ') }}</p>
+      <div class="client-card">
+        <div class="client-card__container">
+          <img class="client-card__icon-user" src="@/assets/user.svg" alt="Usuario" height="85" width="85">
+          <h2 class="client-card__title">Te estabamos esperando, <strong>{{ client.full_name }}.</strong></h2>
+        </div>
       </div>
-      <h3>Oferta Especial</h3>
-      <p :class="offerClass">{{ offerMessage }}</p>
+
+      <div class="client-card client-card--promo-information">
+        <h3 class="client-card--promo-information__title">{{ promoTitle }}</h3>
+        <p :class="offerClass">{{ offerMessage }}</p>
+        <a class="client-card__button" href="#">Descubre más</a>
+      </div>
+
+      <div class="client-card client-card--info">
+        <h3 class="client-card__title">Datos del cliente:</h3>
+        <p>Nombre: <span>{{ client.full_name }}</span></p>
+        <p>Dirección: <span>{{ client.address }}</span></p>
+        <p>CUPS: <span>{{ client.cups }}</span></p>
+        <p>Consumidor: <span>{{ client.role }}</span></p>
+        <p>Edificio: <span>{{ client.building_type }}</span></p>
+      </div>
+
+      <div class="client-card client-card--info">
+        <h3 class="client-card__title">Detalles del Suministro:</h3>
+        <div v-for="supply in clientSupplies" :key="supply.cups">
+          <p>CUPS: <span>{{ supply.cups }}</span></p>
+          <p>Tarifa: <span>{{ supply.tariff }}</span></p>
+          <p>Importe Facturado: <span>{{ supply.invoiced_amount }}</span></p>
+          <p>Potencia P1: <span>{{ supply.power.p1 }}</span></p>
+          <p>Potencia P2: <span>{{ supply.power.p2 }}</span></p>
+          <p>Vecinos: <span>{{ supply.neighbors.join(', ') }}</span></p>
+        </div>
+      </div>
     </div>
     <div v-else>
-      <p>Cliente no encontrado</p>
+      <div class="client-card client-card--info">
+        <h3 class="client-card__title">Cliente no encontrado.</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +58,8 @@ export default defineComponent({
   data() {
     return {
       client: null as Client | null,
-      clientSupplies: [] as SupplyPoint[]
+      clientSupplies: [] as SupplyPoint[],
+      offerType: 'No aplicable'
     };
   },
   created() {
@@ -52,6 +70,7 @@ export default defineComponent({
       this.client = clientsData.find(client => client.cups === this.cups) || null;
       if (this.client) {
         this.clientSupplies = supplyPointsData.filter(supply => supply.cups === this.client!.cups);
+        this.offerType = this.isEligibleForSpecialOffer();
       }
     },
     isEligibleForSpecialOffer(): string {
@@ -95,21 +114,19 @@ export default defineComponent({
   },
   computed: {
     offerMessage(): string {
-      const offer: string = this.isEligibleForSpecialOffer();
-      switch (offer) {
+      switch (this.offerType) {
         case 'Oferta estándar':
-          return '¡Este cliente es elegible para una oferta estándar!';
+          return 'Estás habilitad@ para disfrutar de nuestra promoción #RoofRevolution y de todas las ventajas de nuestros paneles solares.';
         case 'Descuento básico':
-          return '¡Este cliente es elegible para un descuento básico del 5%!';
+          return 'Estás habilitad@ para disfrutar de nuestra promoción #RoofRevolution y de todas las ventajas de nuestros paneles solares. * Además disfrutas de un descuento del 5%.';
         case 'Descuento especial':
-          return '¡Este cliente es elegible para un descuento especial del 12%!';
+          return 'Estás habilitad@ para disfrutar de nuestra promoción #RoofRevolution y de todas las ventajas de nuestros paneles solares. * Además disfrutas de un descuento especial del 12%.';
         default:
-          return 'Este cliente no es elegible para ninguna oferta especial.';
+          return 'Por el momento, no tienes disponible la promoción #RoofRevolution de Holaluz, pero puedes acceder a nuestra web para buscar más promociones y ventajas.';
       }
     },
     offerClass(): string {
-      const offer: string = this.isEligibleForSpecialOffer();
-      switch (offer) {
+      switch (this.offerType) {
         case 'Oferta estándar':
           return 'standard-offer';
         case 'Descuento básico':
@@ -119,6 +136,9 @@ export default defineComponent({
         default:
           return '';
       }
+    },
+    promoTitle(): string {
+      return this.offerType === 'No aplicable' ? '¡Lo sentimos!' : '¡Felicidades!';
     }
   },
   watch: {
@@ -126,7 +146,7 @@ export default defineComponent({
       immediate: true,
       handler(client: Client | null) {
         if (client) {
-          toast(`Bienvenido, ${client.full_name}`);
+          toast(`Hola, ${client.full_name}`);
         }
       }
     }
@@ -135,15 +155,4 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.standard-offer {
-  color: black;
-}
-
-.basic-discount {
-  color: blue;
-}
-
-.special-discount {
-  color: green;
-}
 </style>
