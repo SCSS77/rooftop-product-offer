@@ -2,9 +2,6 @@
   <div>
     <input v-model="cupsInput" type="text" placeholder="Ej.000000">
     <button @click="searchClient">Buscar mi oferta</button>
-    <div v-if="cupsInput && !clientFound">
-      <p>Cliente no encontrado</p>
-    </div>
   </div>
 </template>
 
@@ -13,6 +10,8 @@ import clientsData from '@/data/clients.json';
 import { defineComponent } from 'vue';
 import { Client } from '@/interfaces/types';
 import { RouteLocationRaw } from 'vue-router';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default defineComponent({
   data() {
@@ -27,6 +26,7 @@ export default defineComponent({
       if (this.clientFound) {
         this.$router.push({ name: 'ClientInfo', params: { cups: this.clientFound.cups } } as unknown as RouteLocationRaw);
       } else {
+        toast.error('Cliente no encontrado');
         this.clientFound = null;
       }
     }

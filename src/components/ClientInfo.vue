@@ -31,6 +31,8 @@ import { defineComponent } from 'vue';
 import clientsData from '../data/clients.json';
 import supplyPointsData from '../data/supply-points.json';
 import { Client, SupplyPoint } from '@/interfaces/types';
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default defineComponent({
   props: {
@@ -116,6 +118,16 @@ export default defineComponent({
           return 'special-discount';
         default:
           return '';
+      }
+    }
+  },
+  watch: {
+    client: {
+      immediate: true,
+      handler(client: Client | null) {
+        if (client) {
+          toast(`Bienvenido, ${client.full_name}`);
+        }
       }
     }
   }
