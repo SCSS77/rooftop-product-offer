@@ -1,0 +1,77 @@
+.searcher {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 5rem);
+  justify-content: center;
+
+  &__container {
+    max-width: 36rem;
+  }
+
+  &__title {
+    font-size: 2.8rem;
+    padding-bottom: 1.15rem;
+    line-height: 1.1;
+    letter-spacing: -.5px;
+    text-align: center;
+    font-weight: bolder;
+  }
+
+  &__subtitle {
+    font-size: 1.15rem;
+    line-height: 1.15;
+    letter-spacing: -.5px;
+    text-align: center;
+
+    a {
+      color: $black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  &__input {
+    border: .1rem solid $gray;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);
+    appearance: none;
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    border-radius: .5rem;
+    outline: none;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+      border-color: $pink;
+    }
+
+    &-container {
+      margin: 1.15rem 0;
+    }
+  }
+
+  &__button {
+    background-color: $pink;
+    border: .1rem solid transparent;
+    display: inline-flex;
+    color: $white;
+    height: 3rem;
+    margin: 1.15rem 0;
+    min-height: 3rem;
+    cursor: pointer;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10rem;
+    padding: .75rem 1rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1em;
+    font-weight: bold;
+    width: 100%;
+  }
+}

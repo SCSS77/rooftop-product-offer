@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <input v-model="cupsInput" type="number" placeholder="Ej.000000" @keydown.enter="searchClient">
-    <button @click="searchClient">Buscar mi oferta</button>
+  <div class="searcher__input-container">
+    <input class="searcher__input" v-model="cupsInput" type="number" placeholder="Ej.000000" @keydown.enter="searchClient">
+    <button class="searcher__button" @click="searchClient">Buscar mi oferta</button>
   </div>
 </template>
 
