@@ -1,12 +1,8 @@
 <template>
   <div>
-    <input v-model="cupsInput" type="text" placeholder="Enter the CUPS">
-    <button @click="searchClient">Buscar</button>
-    <div v-if="clientFound">
-      <p>{{ clientFound.full_name }}</p>
-      <p>{{ clientFound.address }}</p>
-    </div>
-    <div v-else>
+    <input v-model="cupsInput" type="text" placeholder="Ej.000000">
+    <button @click="searchClient">Buscar mi oferta</button>
+    <div v-if="cupsInput && !clientFound">
       <p>Cliente no encontrado</p>
     </div>
   </div>
