@@ -1,18 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <h1>Bienvenido a la página de inicio</h1>
+    <UserSearchForm @clientFound="showClientDetails" />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script>
+import UserSearchForm from '@/components/UserSearchForm.vue';
 
-export default defineComponent({
-  name: 'HomeView',
+export default {
   components: {
-    HelloWorld,
+    UserSearchForm
   },
-});
+  methods: {
+    showClientDetails(client) {
+      this.$router.push({ name: 'ClientInfo', params: { cups: client.cups } });
+    }
+  }
+}
 </script>
