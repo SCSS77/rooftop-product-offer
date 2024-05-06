@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="searcher">
+    <div class="searcher__container">
+      <h1 class="searcher__title">Introduzca su ID de punto de suministro.</h1>
+      <p class="searcher__subtitle">Para más información, visite <a href="https://www.holaluz.com/" target="_blank" title="Holaluz"> nuestra página web</a> con todas las especificaciones.</p>
+      <UserSearchForm @clientFound="showClientDetails" />
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script>
+import UserSearchForm from '@/components/UserSearchForm.vue';
 
-export default defineComponent({
-  name: 'HomeView',
+export default {
   components: {
-    HelloWorld,
+    UserSearchForm
   },
-});
+  methods: {
+    showClientDetails(client) {
+      this.$router.push({ name: 'ClientInfo', params: { cups: client.cups } });
+    }
+  }
+}
 </script>
