@@ -1,34 +1,39 @@
-# rooftop-product-offer
+# Rooftop Product Offer
 
-## Project setup
-```
-npm install
-```
+Welcome to the Rooftop Product Offer project!
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Description
 
-### Compiles and minifies for production
-```
-npm run build
-```
+This project is a web application designed to provide personalized product offers to users based on their input. It includes components for user search, client information display, and more.
 
-### Run your unit tests
-```
-npm run test:unit
-```
+## Features
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
+- **User Search**: Allows users to input a unique identifier and search for personalized product offers.
+- **Client Information**: Displays detailed information about the client, including personal details, supply information, and eligibility for special offers.
+- **Responsive Design**: The application is designed to be responsive and work seamlessly across different devices.
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Technologies Used
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- **Vue.js**: Frontend framework used to build the user interface.
+- **Vue Router**: For managing navigation within the application.
+- **Vue Test Utils**: Utility library for testing Vue components.
+- **Jest**: Testing framework for JavaScript code.
+- **JSON Server**: Mock server used to simulate backend data during development.
+
+## Getting Started
+
+1. **Clone the Repository**: `git clone https://github.com/your-username/rooftop-product-offer.git`
+2. **Install Dependencies**: `npm install`
+3. **Run the Development Server**: `npm run serve`
+
+## Testing
+
+- **Unit Tests**: The project includes unit tests for various components and functionalities. Run `npm run test:unit` to execute the unit tests.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
