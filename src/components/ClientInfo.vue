@@ -49,7 +49,6 @@ import clientsData from '../data/clients.json';
 import supplyPointsData from '../data/supply-points.json';
 import { Client, SupplyPoint } from '@/interfaces/types';
 import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
 
 export default defineComponent({
   props: {
@@ -158,4 +157,5 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import "vue3-toastify/dist/index.css";
 </style>

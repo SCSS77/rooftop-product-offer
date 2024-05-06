@@ -11,7 +11,6 @@ import { defineComponent } from 'vue';
 import { Client } from '@/interfaces/types';
 import { RouteLocationRaw } from 'vue-router';
 import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
 
 export default defineComponent({
   data() {
@@ -43,6 +42,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import "vue3-toastify/dist/index.css";
+
 .searcher__input--error {
   border-color: #D12929;
 }
