@@ -1,5 +1,9 @@
 # Rooftop Product Offer
 
+<img src="https://raw.githubusercontent.com/SCSS77/rooftop-product-offer/master/public/banner-vue.jpeg" alt="vue js banner" align="center" />
+
+<br />
+
 Welcome to the Rooftop Product Offer project!
 
 ## Description
