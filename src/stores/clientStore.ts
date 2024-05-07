@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import { Client } from '@/interfaces/types';
+import { Client, SupplyPoint } from '@/interfaces/types';
+import supplyPointsData from '@/data/supply-points.json';
 
 export const useClientStore = defineStore({
   id: 'client',
@@ -21,6 +22,9 @@ export const useClientStore = defineStore({
     },
     getClientByCups(cups: string): Client | undefined {
       return this.clients.find(client => client.cups === cups);
+    },
+    getClientSuppliesByCups(cups: string): SupplyPoint[] {
+      return supplyPointsData.filter(supply => supply.cups === cups);
     }
   }
 });
