@@ -1,50 +1,54 @@
 <template>
   <div class="searcher__input-container">
-    <input :class="{ 'searcher__input': true, 'searcher__input--error': showError }" v-model="cupsInput" type="number" placeholder="Ej.000000" @keydown.enter="searchClient">
+    <input
+      :class="{ 'searcher__input': true, 'searcher__input--error': showError }"
+      v-model="cupsInput"
+      type="number"
+      placeholder="Ej. 000000"
+      @keydown.enter="searchClient"
+    />
     <button class="searcher__button" @click="searchClient">Buscar mi oferta</button>
   </div>
 </template>
 
-<script lang="ts">
-import clientsData from '@/data/clients.json';
-import { defineComponent } from 'vue';
-import { Client } from '@/interfaces/types';
-import { RouteLocationRaw } from 'vue-router';
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useClientStore } from '@/stores/clientStore';
+import { useRouter } from 'vue-router';
 import { toast } from 'vue3-toastify';
 
-export default defineComponent({
-  data() {
-    return {
-      cupsInput: '',
-      clientFound: null as Client | null,
-      showError: false
-    }
-  },
-  methods: {
-    searchClient() {
-      if (!this.cupsInput) {
-        toast.error('Por favor, ingrese un número de cups');
-        this.showError = true;
-        return;
-      }
+const store = useClientStore();
+const router = useRouter();
 
-      this.showError = false;
-      this.clientFound = clientsData.find((client: Client) => client.cups === this.cupsInput.toString()) || null;
-      if (this.clientFound) {
-        this.$router.push({ name: 'ClientInfo', params: { cups: this.clientFound.cups } } as unknown as RouteLocationRaw);
-      } else {
-        toast.error('Cliente no encontrado');
-        this.clientFound = null;
-      }
-    }
+const cupsInput = ref<number | string>('');
+const showError = ref(false);
+
+const searchClient = async () => {
+  if (!cupsInput.value) {
+    toast.error('Por favor, ingrese un número de CUPS');
+    showError.value = true;
+    return;
   }
-});
+
+  showError.value = false;
+
+  await store.loadClients();
+
+  const cupsInputStr = String(cupsInput.value);
+
+  const clientFound = store.getClientByCups(cupsInputStr);
+  if (clientFound) {
+    router.push({ name: 'ClientInfo', params: { cups: clientFound.cups } });
+  } else {
+    toast.error('Cliente no encontrado');
+  }
+};
 </script>
 
 <style scoped>
 @import "vue3-toastify/dist/index.css";
 
 .searcher__input--error {
-  border-color: #D12929;
+  border-color: #d12929;
 }
 </style>
